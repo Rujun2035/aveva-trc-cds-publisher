@@ -1,0 +1,167 @@
+
+                              POST-SOLUTION ANALYSIS
+                              ----------------------
+
+Active Constraint - Independent Variable Pairings
+=================================================
+In this report dO/dZ is the derivative of the objective function with
+respect to an independent variable and dW/dZ is the derivative of a dependent
+variable with respect to an independent variable.
+
+The following is a possible pairing of active dependent variable bounds with
+independent variables.  It is based both on the derivatives of the dependent 
+variables and of the objective function with respect to the independent variables.
+                                                                                                                                                                  Kuhn-Tucker   Derivative     dO/dZ
+                                                                                                                                                                  -----------   ----------   ----------
+  1. Upper /S9:Flow["StdVapVol"]                                                                                                                                   -4.777E-04                          
+       and /AirFlowControl/MO1:Setpoint                                                                                                                                          1.000E+00   -5.889E-06
+  2. Lower /CURefrigerant:OffsetFromMaxRate                                                                                                                        -6.150E-01                          
+       and /RefrigSystem/CT1/MO1:Setpoint                                                                                                                                        1.001E-01   -6.556E-02
+  3. Upper /S6:Liq:SumMoleFrac                                                                                                                                      6.356E-01                          
+       and /S6:Equil:PFrac["Liq"]                                                                                                                                               -1.737E+01   -8.807E+00
+Solution Sensitivity to Active Constraints
+==========================================
+This section lists the sensitivity of the solution to the 
+active constraints.  For each constraint the amount that 
+each independent variable would be expected to change for 
+a one unit relaxation of the constraint is listed. 
+This is an estimate based on a QP approximation to the 
+nonlinear optimization problem.  In addition, the amount 
+each constraint could be relaxed before the active set of 
+constraints would change is estimated.  The active set would
+change if either it would no longer be optimal to make the 
+constraint active or another constraint would become active.
+
+The sensitivity of the solution (independent variables)
+to the relaxation of the active constraint: 
+   Lower /CURefrigerant:OffsetFromMaxRate
+is as follows:
+   /S6:Equil:PFrac["Liq"]                                                                                                                                    -3.235E-03
+   /RefrigSystem/CT1/MO1:Setpoint                                                                                                                            -8.946E+00
+It could be relaxed by   6.192E-04 before the active constraint 
+   Lower /CURefrigerant:OffsetFromMaxRate
+would no longer be active because it would not be optimal.
+It could be relaxed by   1.306E-01 before the inactive constraint 
+   Lower /S6:Equil:PFrac["Liq"]
+would become active.
+
+The sensitivity of the solution (independent variables)
+to the relaxation of the active constraint: 
+   Upper /S6:Liq:SumMoleFrac
+is as follows:
+   /S6:Equil:PFrac["Liq"]                                                                                                                                    -5.155E-02
+   /RefrigSystem/CT1/MO1:Setpoint                                                                                                                             1.662E+01
+It could be relaxed by  -3.129E-05 before the active constraint 
+   Upper /S6:Liq:SumMoleFrac
+would no longer be active because it would not be optimal.
+It could be relaxed by   8.198E-03 before the inactive constraint 
+   Lower /S6:Equil:PFrac["Liq"]
+would become active.
+
+The sensitivity of the solution (independent variables)
+to the relaxation of the active constraint: 
+   Upper /S9:Flow["StdVapVol"]
+is as follows:
+   /S6:Equil:PFrac["Liq"]                                                                                                                                     1.183E-05
+   /AirFlowControl/MO1:Setpoint                                                                                                                               1.000E+00
+   /RefrigSystem/CT1/MO1:Setpoint                                                                                                                            -8.966E-03
+It could be relaxed by   3.096E+01 before the active constraint 
+   Lower /CURefrigerant:OffsetFromMaxRate
+would no longer be active because it would not be optimal.
+It could be relaxed by   2.103E-04 before the inactive constraint 
+   Upper /AirFlowControl/MO1:Setpoint
+would become active.
+
+Objective Function Sensitivities to Independent Variables
+=========================================================
+This report lists the effect of moving each independent, while keeping all 
+other independent variables constant, on the objective function.  Each 
+effect is broken down into individual affects on variables which explicitly 
+affect the objective function.  In this report dO/dX is the partial
+derivative of the objective function with respect to a variable and dX/dZ
+is the derivative of a variable with respect to an independent variable.
+Note: The Total Derivative printed out for each variable should equal
+      the Reduced Objective Function Gradient value listed on the final
+      iteration! If this is NOT the case, rerun the problem again with
+      tighter convergence tolerances.
+
+  1 /S6:Liq:SumMoleFrac  (Swapped with /S6:Equil:PFrac["Liq"])
+---------------------------------------------------------------------
+                                                                                                                                                           dO/dX    *   dX/dZ    =  Product
+                                                                                                                                                         ----------   ----------   ----------
+/InletGas:IntStr:Econ:StreamCashFlow                                                                                                                     -1.000E+00    1.722E-01   -1.722E-01
+/NGLSink:IntStr:Econ:StreamCashFlow                                                                                                                       1.000E+00    6.580E-01    6.580E-01
+/GasPipeline:IntStr:Econ:StreamCashFlow                                                                                                                   1.000E+00    3.770E-02    3.770E-02
+/C1:PowerEconManager:CashFlow                                                                                                                            -1.000E+00    1.783E-04   -1.783E-04
+/Motor1:PowerEconManager:CashFlow                                                                                                                        -1.000E+00    1.048E-05   -1.048E-05
+/RefrigSystem/Refrigerant:IntStr:Econ:StreamCashFlow                                                                                                     -1.000E+00    1.638E-02   -1.638E-02
+Total Derivative                                                                                                                                                                    5.070E-01
+
+  2 /AirFlowControl/MO1:Setpoint
+---------------------------------------------------------------------
+                                                                                                                                                           dO/dX    *   dX/dZ    =  Product
+                                                                                                                                                         ----------   ----------   ----------
+/InletGas:IntStr:Econ:StreamCashFlow                                                                                                                     -1.000E+00   -4.622E-07    4.622E-07
+/NGLSink:IntStr:Econ:StreamCashFlow                                                                                                                       1.000E+00   -1.099E-05   -1.099E-05
+/GasPipeline:IntStr:Econ:StreamCashFlow                                                                                                                   1.000E+00    8.518E-08    8.518E-08
+/C1:PowerEconManager:CashFlow                                                                                                                            -1.000E+00   -4.787E-10    4.787E-10
+/Motor1:PowerEconManager:CashFlow                                                                                                                        -1.000E+00    4.399E-11   -4.399E-11
+/RefrigSystem/Refrigerant:IntStr:Econ:StreamCashFlow                                                                                                     -1.000E+00   -4.548E-06    4.548E-06
+Total Derivative                                                                                                                                                                   -5.889E-06
+
+  3 /RefrigSystem/CT1/MO1:Setpoint
+---------------------------------------------------------------------
+                                                                                                                                                           dO/dX    *   dX/dZ    =  Product
+                                                                                                                                                         ----------   ----------   ----------
+/InletGas:IntStr:Econ:StreamCashFlow                                                                                                                     -1.000E+00   -1.117E-02    1.117E-02
+/NGLSink:IntStr:Econ:StreamCashFlow                                                                                                                       1.000E+00   -9.074E-02   -9.074E-02
+/GasPipeline:IntStr:Econ:StreamCashFlow                                                                                                                   1.000E+00    1.309E-02    1.309E-02
+/C1:PowerEconManager:CashFlow                                                                                                                            -1.000E+00   -1.157E-05    1.157E-05
+/Motor1:PowerEconManager:CashFlow                                                                                                                        -1.000E+00   -1.535E-05    1.535E-05
+/RefrigSystem/Refrigerant:IntStr:Econ:StreamCashFlow                                                                                                     -1.000E+00   -8.829E-04    8.829E-04
+Total Derivative                                                                                                                                                                   -6.556E-02
+
+Top Ten Contributors                                                                                                                                       dO/dX      Contribution
+--------------------                                                                                                                                     ----------   ------------
+/NGLSink:IntStr:Econ:StreamCashFlow                                                                                                                       1.000E+00    -2.292E+01
+/GasPipeline:IntStr:Econ:StreamCashFlow                                                                                                                   1.000E+00    -3.251E+00
+/InletGas:IntStr:Econ:StreamCashFlow                                                                                                                     -1.000E+00    -2.914E+00
+/RefrigSystem/Refrigerant:IntStr:Econ:StreamCashFlow                                                                                                     -1.000E+00    -2.337E-01
+/Motor1:PowerEconManager:CashFlow                                                                                                                        -1.000E+00    -3.778E-03
+/C1:PowerEconManager:CashFlow                                                                                                                            -1.000E+00    -3.018E-03
+
+Active Constraint Sensitivities to Independent Variables
+========================================================
+This report lists the affect of moving each independent, while keeping all 
+other independent variables constant, on the active constraints.  For each 
+independent variable, only movement in the direction of maximizing the objective
+is considered.  This is not necessarily the same direction as the variable
+was pushed in the solution, since an independent variable may move opposite
+to the objective function gradient due to trade-offs with other independent 
+variables.  In this report dW/dZ is the derivative of a dependent
+variable with respect to an independent variable.
+
+1.  A decrease in the independent variable 
+  114 /S6:Equil:PFrac["Liq"]
+with objective function gradient value  -8.807E+00
+will cause the following active dependent variable bounds to become violated:
+                                                                                                                                                             Kuhn-Tucker    dW/dZ
+                                                                                                                                                             -----------  ----------
+Lower /CURefrigerant:OffsetFromMaxRate                                                                                                                        -6.150E-01   3.228E+01
+Upper /S6:Liq:SumMoleFrac                                                                                                                                      6.356E-01  -1.737E+01
+
+2.  A decrease in the independent variable 
+  878 /AirFlowControl/MO1:Setpoint
+with objective function gradient value  -5.889E-06
+will cause the following active dependent variable bounds to become violated:
+                                                                                                                                                             Kuhn-Tucker    dW/dZ
+                                                                                                                                                             -----------  ----------
+Lower /CURefrigerant:OffsetFromMaxRate                                                                                                                        -6.150E-01   5.157E-04
+
+3.  A decrease in the independent variable 
+ 1015 /RefrigSystem/CT1/MO1:Setpoint
+with objective function gradient value  -6.556E-02
+will cause the following active dependent variable bounds to become violated:
+                                                                                                                                                             Kuhn-Tucker    dW/dZ
+                                                                                                                                                             -----------  ----------
+Lower /CURefrigerant:OffsetFromMaxRate                                                                                                                        -6.150E-01   1.001E-01
